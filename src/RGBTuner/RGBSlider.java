@@ -10,42 +10,60 @@ public class RGBSlider implements ChangeListener{
 	JSlider greenSlider;
 	JSlider blueSlider;
 	
+	JLabel redLabel;
+	JLabel greenLabel;
+	JLabel blueLabel;
+	
+	JPanel contentPanel;
+	
 	RGBSlider() {
 		
 		redSlider = new JSlider(0, 255, 0);
 		redSlider.setPreferredSize(new Dimension(300, 300));
+		redSlider.setOrientation(JSlider.VERTICAL);
+		redSlider.addChangeListener(this);
 		greenSlider = new JSlider(0, 255, 0);
 		greenSlider.setPreferredSize(new Dimension(300, 300));
+		greenSlider.setOrientation(JSlider.VERTICAL);
+		greenSlider.addChangeListener(this);
 		blueSlider = new JSlider(0, 255, 0);
 		blueSlider.setPreferredSize(new Dimension(300, 300));
+		blueSlider.setOrientation(JSlider.VERTICAL);
+		blueSlider.addChangeListener(this);
 		
-		JLabel redLabel = new JLabel();
-		redLabel.setText(" "+redSlider.getValue()+"°C");
-		JLabel greenLabel = new JLabel();
-		greenLabel.setText(" "+greenSlider.getValue()+"°C");
-		JLabel blueLabel = new JLabel();
-		blueLabel.setText(" "+blueSlider.getValue()+"°C");
+		redLabel = new JLabel();
+		redLabel.setText(redSlider.getValue()+" RED");
+		greenLabel = new JLabel();
+		greenLabel.setText(greenSlider.getValue()+" GREEN");
+		blueLabel = new JLabel();
+		blueLabel.setText(blueSlider.getValue()+" BLUE");
 		
-		JPanel contentPanel = new JPanel();
-		contentPanel.setPreferredSize(new Dimension(900, 350));
-		contentPanel.setBackground(new Color(1, 4, 67));
+		contentPanel = new JPanel();
+		contentPanel.setPreferredSize(new Dimension(900, 300));
+		contentPanel.setBackground(new Color(
+				redSlider.getValue(), 
+				greenSlider.getValue(), 
+				blueSlider.getValue()));
 		
 		JPanel redPanel = new JPanel();
 		redPanel.setBounds(0, 0, 300, 350);
-		redPanel.setBackground(Color.red);
+		redPanel.add(redSlider);
+		redPanel.add(redLabel);
 		JPanel greenPanel = new JPanel();
 		greenPanel.setBounds(300, 0, 300, 350);
-		greenPanel.setBackground(Color.green);
+		greenPanel.add(greenSlider);
+		greenPanel.add(greenLabel);
 		JPanel bluePanel = new JPanel();
 		bluePanel.setBounds(600, 0, 300, 350);
-		bluePanel.setBackground(Color.blue);
+		bluePanel.add(blueSlider);
+		bluePanel.add(blueLabel);
 		
-		JPanel southPanel = new JPanel();
-		southPanel.setLayout(null);
-		southPanel.setPreferredSize(new Dimension(900, 350));
-		southPanel.add(redPanel);
-		southPanel.add(greenPanel);
-		southPanel.add(bluePanel);
+		JPanel colorSettingPanel = new JPanel();
+		colorSettingPanel.setLayout(null);
+		colorSettingPanel.setPreferredSize(new Dimension(900, 350));
+		colorSettingPanel.add(redPanel);
+		colorSettingPanel.add(greenPanel);
+		colorSettingPanel.add(bluePanel);
 		
 		
 		JFrame frame = new JFrame();
@@ -53,7 +71,7 @@ public class RGBSlider implements ChangeListener{
 		frame.setSize(900, 700);
 		
 		frame.add(contentPanel, BorderLayout.NORTH);
-		frame.add(southPanel, BorderLayout.SOUTH);
+		frame.add(colorSettingPanel, BorderLayout.SOUTH);
 		
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -66,8 +84,21 @@ public class RGBSlider implements ChangeListener{
 	}
 
 	@Override
-	public void stateChanged(ChangeEvent arg0) {
-		// TODO Auto-generated method stub
+	public void stateChanged(ChangeEvent e) {
+		if(
+				e.getSource()==redSlider ||
+				e.getSource()==greenSlider ||
+				e.getSource()==blueSlider
+				) {
+			contentPanel.setBackground(new Color(
+					redSlider.getValue(), 
+					greenSlider.getValue(), 
+					blueSlider.getValue()));
+			//Change the labels values
+			redLabel.setText(redSlider.getValue()+" RED");
+			greenLabel.setText(greenSlider.getValue()+" GREEN");
+			blueLabel.setText(blueSlider.getValue()+" BLUE");
+		}
 		
 	}
 
