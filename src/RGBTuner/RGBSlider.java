@@ -22,14 +22,23 @@ public class RGBSlider implements ChangeListener{
 		redSlider.setPreferredSize(new Dimension(300, 300));
 		redSlider.setOrientation(JSlider.VERTICAL);
 		redSlider.addChangeListener(this);
+		redSlider.setMajorTickSpacing(10);
+		redSlider.setMinorTickSpacing(5);
+		redSlider.setPaintTicks(true);
 		greenSlider = new JSlider(0, 255, 0);
 		greenSlider.setPreferredSize(new Dimension(300, 300));
 		greenSlider.setOrientation(JSlider.VERTICAL);
 		greenSlider.addChangeListener(this);
+		greenSlider.setMajorTickSpacing(10);
+		greenSlider.setMinorTickSpacing(5);
+		greenSlider.setPaintTicks(true);
 		blueSlider = new JSlider(0, 255, 0);
 		blueSlider.setPreferredSize(new Dimension(300, 300));
 		blueSlider.setOrientation(JSlider.VERTICAL);
 		blueSlider.addChangeListener(this);
+		blueSlider.setMajorTickSpacing(10);
+		blueSlider.setMinorTickSpacing(5);
+		blueSlider.setPaintTicks(true);
 		
 		redLabel = new JLabel();
 		redLabel.setText(redSlider.getValue()+" RED");
