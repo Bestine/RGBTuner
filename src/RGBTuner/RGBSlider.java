@@ -83,13 +83,7 @@ public class RGBSlider implements ChangeListener{
 		frame.add(colorSettingPanel, BorderLayout.SOUTH);
 		
 		frame.setVisible(true);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		
-		
-		
-		
-		
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 	}
 
 	@Override
